@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulário de Cadastro</title>
+<link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+<form id="cadastro-form" novalidate>
+  <label for="nome">Nome:</label>
+  <input type="text" id="nome" name="nome" autofocus required minlength="2" maxlength="50">
+  <span class="error" aria-live="polite"></span>
+
+  <label for="email">E-mail:</label>
+  <input type="email" id="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+  <span class="error" aria-live="polite"></span>
+
+  <label for="idade">Idade:</label>
+  <input type="number" id="idade" name="idade" required min="18" max="120">
+  <span class="error" aria-live="polite"></span>
+
+  <button type="submit">Enviar</button>
+  <button type="button" id="limpar">Limpar</button>
+</form>
+
+<div id="dados-cadastrados"></div>
+<script src="./js/regex.js"></script>
+</body>
+</html>
