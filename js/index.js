@@ -17,14 +17,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Se o formulário for válido, exibir os dados capturados na tela
-    const dadosCadastradosDiv = document.getElementById('dados-cadastrados');
-    const dados = new DadosFormulario(nome.value, email.value, idade.value);
-    dadosCadastradosDiv.innerHTML = `
-      <h2>Dados Cadastrados:</h2>
-      <p>Nome: ${dados.nome}</p>
-      <p>E-mail: ${dados.email}</p>
-      <p>Idade: ${dados.idade}</p>
-    `;
+    const cardNome = document.getElementById('card-nome');
+    const cardEmail = document.getElementById('card-email');
+    const cardIdade = document.getElementById('card-idade');
+    cardNome.textContent = nome.value;
+    cardEmail.textContent = email.value;
+    cardIdade.textContent = idade.value;
   });
 
   const botaoLimpar = document.getElementById('limpar');

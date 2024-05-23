@@ -1,7 +1,7 @@
 html {
   background-image: url('../img/1271800.png');
-  background-size: cover; /* Para cobrir toda a área do corpo */
-  background-repeat: no-repeat; /* Para evitar repetição da imagem */
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 header {
@@ -10,32 +10,32 @@ header {
   color: white;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: fixed; /* Fixa o header no topo */
-  top: 0; /* Posiciona no topo da página */
-  left: 0; /* Alinha à esquerda */
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .container {
-  justify-content: center; /* Centraliza horizontalmente */
-  align-items: center; /* Centraliza verticalmente */
-  height: 100vh; /* Define a altura do body para 100% da altura da viewport */
-  margin: 0; /* Remove margens padrão */
-  padding: 0 1rem; /* Adiciona padding para dispositivos móveis */
-  box-sizing: border-box; /* Inclui padding e border no tamanho total */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0 1rem;
+  box-sizing: border-box;
   display: flex;
-  flex-direction: column; /* Empilha os elementos verticalmente */
+  flex-direction: column;
   align-items: center;
   width: 100%;
-  padding-top: 5rem; /* Adiciona espaço para o header fixo */
+  padding-top: 5rem;
 }
 
 form {
   max-width: 25rem;
-  width: 100%; /* Garante que o formulário não exceda a largura máxima */
+  width: 100%;
   padding: 1.25rem;
-  background-color: rgba(255, 255, 255, 0.9); /* Fundo branco com transparência */
-  border-radius: .5rem; /* Bordas arredondadas */
-  box-shadow: 0 0 .625rem rgba(0, 0, 0, 0.1); /* Sombra suave */
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: .5rem;
+  box-shadow: 0 0 .625rem rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
 }
 
@@ -68,8 +68,8 @@ button:hover {
   background-color: #45a049;
 }
 
-#dados-card {
-  height: 17.3125rem;
+#dados-cadastrados {
+  height: 16.875rem;
   width: 100%;
   max-width: 25rem;
   padding: 1.25rem;
@@ -80,39 +80,14 @@ button:hover {
   box-sizing: border-box;
 }
 
-#dados-card h3 {
+#dados-cadastrados h3 {
   margin-bottom: .625rem;
   border-bottom: 1px solid black;
 }
 
-#dados-card p {
+#dados-cadastrados p {
   border-bottom: 1px solid black;
   margin-bottom: .3125rem;
-}
-
-#error {
-  color: red;
-  font-size: .75rem;
-}
-
-@media (min-width: 600px) {
-  .container {
-    flex-direction: row;
-    justify-content: center;
-  }
-
-  #dados-card {
-    margin-left: 1.25rem;
-    margin-top: 0;
-  }
-}
-
-input:invalid {
-  border: 1px solid red;
-}
-
-input:valid {
-  border: 1px solid green;
 }
 
 .error {
@@ -124,3 +99,22 @@ input:valid {
   border: 1px solid red;
 }
 
+input:invalid {
+  border: 1px solid red;
+}
+
+input:valid {
+  border: 1px solid green;
+}
+
+@media (min-width: 600px) {
+  .container {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  #dados-cadastrados {
+    margin-left: 1.25rem;
+    margin-top: 0;
+  }
+}
