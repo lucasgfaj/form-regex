@@ -1,17 +1,32 @@
-/* Estilos opcionais para o formulário */
 html {
   background-image: url('../img/1271800.png');
   background-size: cover; /* Para cobrir toda a área do corpo */
   background-repeat: no-repeat; /* Para evitar repetição da imagem */
 }
 
-body {
-  font-family: Arial, sans-serif;
-  display: flex;
+header {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed; /* Fixa o header no topo */
+  top: 0; /* Posiciona no topo da página */
+  left: 0; /* Alinha à esquerda */
+}
+
+.container {
   justify-content: center; /* Centraliza horizontalmente */
   align-items: center; /* Centraliza verticalmente */
   height: 100vh; /* Define a altura do body para 100% da altura da viewport */
   margin: 0; /* Remove margens padrão */
+  padding: 0 1rem; /* Adiciona padding para dispositivos móveis */
+  box-sizing: border-box; /* Inclui padding e border no tamanho total */
+  display: flex;
+  flex-direction: column; /* Empilha os elementos verticalmente */
+  align-items: center;
+  width: 100%;
+  padding-top: 5rem; /* Adiciona espaço para o header fixo */
 }
 
 form {
@@ -21,6 +36,7 @@ form {
   background-color: rgba(255, 255, 255, 0.9); /* Fundo branco com transparência */
   border-radius: .5rem; /* Bordas arredondadas */
   box-shadow: 0 0 .625rem rgba(0, 0, 0, 0.1); /* Sombra suave */
+  box-sizing: border-box;
 }
 
 label {
@@ -52,31 +68,16 @@ button:hover {
   background-color: #45a049;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-#cadastro-form {
-  max-width: 25rem;
-  width: 100%;
-  padding: 1.25rem;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: .5rem;
-  box-shadow: 0 0 .625rem rgba(0, 0, 0, 0.1);
-}
-
 #dados-card {
-  height: 14.875rem;
-  max-width: 26 rem;
+  height: 17.3125rem;
   width: 100%;
-  padding: 1.20rem;
-  margin-left: 1.25rem;
+  max-width: 25rem;
+  padding: 1.25rem;
+  margin-top: 1rem;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: .5rem;
   box-shadow: 0 0 .625rem rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 #dados-card h3 {
@@ -93,3 +94,33 @@ button:hover {
   color: red;
   font-size: .75rem;
 }
+
+@media (min-width: 600px) {
+  .container {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  #dados-card {
+    margin-left: 1.25rem;
+    margin-top: 0;
+  }
+}
+
+input:invalid {
+  border: 1px solid red;
+}
+
+input:valid {
+  border: 1px solid green;
+}
+
+.error {
+  color: red;
+  font-size: 0.75rem;
+}
+
+.invalid {
+  border: 1px solid red;
+}
+

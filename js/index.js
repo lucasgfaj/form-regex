@@ -1,45 +1,49 @@
 document.addEventListener('DOMContentLoaded', function() {
   const formulario = document.getElementById('cadastro-form');
-  const dadosCadastradosDiv = document.getElementById('dados-cadastrados');
 
   formulario.addEventListener('submit', function(event) {
     event.preventDefault(); // Evitar envio do formulário
 
-    const nome = document.getElementById('nome').value;
-    const email = document.getElementById('email').value;
-    const idade = document.getElementById('idade').value;
+    const nome = document.getElementById('nome');
+    const email = document.getElementById('email');
+    const idade = document.getElementById('idade');
 
-    if (!isValidEmail(email)) {
-      // Exibir mensagem de erro para o usuário
-      const errorMessage = document.querySelector('#email + .error-message');
-      errorMessage.textContent = 'Por favor, insira um endereço de e-mail válido.';
+    if (!formulario.checkValidity()) {
+      // Se o formulário não for válido, exibir mensagens de erro
+      mostrarMensagemDeErro(nome);
+      mostrarMensagemDeErro(email);
+      mostrarMensagemDeErro(idade);
       return;
     }
 
-    if (nome && email && idade) {
-      const dados = new DadosFormulario(nome, email, idade);
-      dadosCadastradosDiv.innerHTML = `
-        <h2>Dados Cadastrados:</h2>
-        <p><strong>Nome:</strong> ${dados.nome}</p>
-        <p><strong>E-mail:</strong> ${dados.email}</p>
-        <p><strong>Idade:</strong> ${dados.idade}</p>
-      `;
-    } else {
-      alert('Por favor, preencha todos os campos do formulário.');
-    }
+    // Se o formulário for válido, exibir os dados capturados na tela
+    const dadosCadastradosDiv = document.getElementById('dados-cadastrados');
+    const dados = new DadosFormulario(nome.value, email.value, idade.value);
+    dadosCadastradosDiv.innerHTML = `
+      <h2>Dados Cadastrados:</h2>
+      <p>Nome: ${dados.nome}</p>
+      <p>E-mail: ${dados.email}</p>
+      <p>Idade: ${dados.idade}</p>
+    `;
   });
 
   const botaoLimpar = document.getElementById('limpar');
   botaoLimpar.addEventListener('click', function() {
     const campos = document.querySelectorAll('input');
     campos.forEach(function(campo) {
-      campo.value = ' ';
+      campo.value = '';
+      campo.classList.remove('invalid');
+    });
+    const mensagensErro = document.querySelectorAll('.error');
+    mensagensErro.forEach(function(mensagem) {
+      mensagem.textContent = '';
     });
   });
 
-  function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+  function mostrarMensagemDeErro(campo) {
+    const spanErro = document.getElementById(`${campo.id}-error`);
+    spanErro.textContent = campo.validationMessage;
+    campo.classList.add('invalid');
   }
 
   class DadosFormulario {
@@ -49,39 +53,4 @@ document.addEventListener('DOMContentLoaded', function() {
       this.idade = idade;
     }
   }
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  const formulario = document.getElementById('cadastro-form');
-  const dadosCardNome = document.getElementById('card-nome');
-  const dadosCardEmail = document.getElementById('card-email');
-  const dadosCardIdade = document.getElementById('card-idade');
-
-  formulario.addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const nome = document.getElementById('nome').value;
-    const email = document.getElementById('email').value;
-    const idade = document.getElementById('idade').value;
-
-    if (nome && email && idade) {
-      dadosCardNome.textContent = nome;
-      dadosCardEmail.textContent = email;
-      dadosCardIdade.textContent = idade;
-    } else {
-      alert('Por favor, preencha todos os campos do formulário.');
-    }
-  });
-
-  const botaoLimpar = document.getElementById('limpar');
-  botaoLimpar.addEventListener('click', function() {
-    const campos = document.querySelectorAll('input');
-    campos.forEach(function(campo) {
-      campo.value = '';
-    });
-
-    dadosCardNome.textContent = '';
-    dadosCardEmail.textContent = '';
-    dadosCardIdade.textContent = '';
-  });
 });
