@@ -118,3 +118,7 @@ input:valid {
     margin-top: 0;
   }
 }
+
+.hidden {
+  display: none;
+}
