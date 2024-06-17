@@ -51,6 +51,31 @@ $(document).ready(function() {
     }
   }
 
+  // Função para enviar os dados para o servidor JSON usando Fetch API
+  function salvarDadosNoServidor(dados) {
+    fetch('http://localhost:3000/dados', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(dados),
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Ocorreu um problema ao salvar os dados no servidor.');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Dados enviados para o servidor:', data);
+      alert('Dados salvos com sucesso no servidor!');
+    })
+    .catch(error => {
+      console.error('Erro ao enviar dados para o servidor:', error);
+      alert('Erro ao salvar os dados no servidor. Verifique o console para mais detalhes.');
+    });
+  }
+
   // Evento de submit do formulário
   formulario.on('submit', function(event) {
     event.preventDefault(); // Evitar envio do formulário
@@ -75,14 +100,17 @@ $(document).ready(function() {
     };
 
     // Tentar salvar os dados no localStorage
-    const sucesso = salvarDadosNoLocalStorage(dadosFormulario);
-    if (sucesso) {
-      // Atualizar exibição dos dados apenas se os dados foram salvos com sucesso
+    const sucessoLocalStorage = salvarDadosNoLocalStorage(dadosFormulario);
+    if (sucessoLocalStorage) {
+      // Tentar salvar os dados no servidor JSON usando Fetch API
+      salvarDadosNoServidor(dadosFormulario);
+      
+      // Atualizar exibição dos dados apenas se os dados foram salvos com sucesso no localStorage
       carregarDadosDoLocalStorage();
       // Limpar formulário
       formulario[0].reset();
     } else {
-      // Se não foi possível salvar os dados, exibir mensagem de alerta
+      // Se não foi possível salvar os dados no localStorage, exibir mensagem de alerta
       alert('Só é permitido um cadastro por vez.');
     }
   });
